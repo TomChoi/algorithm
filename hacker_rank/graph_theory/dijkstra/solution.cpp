@@ -6,7 +6,7 @@ vector<int> solve(int n, vector<vector<int>> edges, int s) {
     vector<int> dist(n+1);
     vector<int> visited(n+1);
     vector<set<pair<int, int>>> adj(n+1);
-    priority_queue<int,int> q;
+    priority_queue<pair<int,int>> q;
 
     int sz=edges.size();
     for(auto e: edges) {
@@ -22,7 +22,7 @@ vector<int> solve(int n, vector<vector<int>> edges, int s) {
     q.push({0,s});
 
     while(!q.empty()) {
-        int t=q.front(); q.pop();
+        int t=q.top().second; q.pop();
         if(visited[t]) continue;
         visited[t]=true;
         for(auto e: adj[t]) {
